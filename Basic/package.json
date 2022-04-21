@@ -4,14 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc --build",
+    "dev": "ts-node src",
+    "build": "tsc && node dist",
     "clean": "tsc --build --clean",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "brandi": "^4.0.1",
+    "inversify": "^6.0.1",
     "linqts": "^1.14.4",
     "reflect-metadata": "^0.1.13"
   }
