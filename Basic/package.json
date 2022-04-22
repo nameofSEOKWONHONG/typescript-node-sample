@@ -14,6 +14,8 @@
   "dependencies": {
     "inversify": "^6.0.1",
     "linqts": "^1.14.4",
-    "reflect-metadata": "^0.1.13"
+    "mysql2": "^2.3.3",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.6"
   }
 }

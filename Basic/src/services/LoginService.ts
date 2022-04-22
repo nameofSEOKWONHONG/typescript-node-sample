@@ -1,7 +1,7 @@
 import { inject, injectable } from "inversify";
 import { UserRepository } from '../repository/UserRepository';
 import { TYPES } from "../types";
-import { Logger, ILogger } from "../utils/logger";
+import { ConsoleLogger, ILogger } from "../utils/logger";
 
 export interface ILoginService {
     isLogin(name:string, age:number):boolean
@@ -10,9 +10,9 @@ export interface ILoginService {
 @injectable()
 export class LoginService implements ILoginService {
     _userRepository:UserRepository
-    _logger:Logger
+    _logger:ConsoleLogger
     constructor(
-        @inject(TYPES.Logger)logger:Logger,
+        @inject(TYPES.Logger)logger:ConsoleLogger,
         @inject(TYPES.UserRepository)userRepository:UserRepository) {
         this._logger = logger
         this._userRepository = userRepository

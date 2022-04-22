@@ -5,7 +5,7 @@ export interface ILogger {
 }
 
 @injectable()
-export class Logger implements ILogger {
+export class ConsoleLogger implements ILogger {
     write(obj:any): void {
         console.log(obj)
     }
