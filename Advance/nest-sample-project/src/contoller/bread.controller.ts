@@ -1,7 +1,8 @@
-import { Get } from "@nestjs/common";
+import { Controller, Get } from "@nestjs/common";
 import { Bread } from "src/entity/bread";
 import { BreadService } from "src/service/bread.service";
 
+@Controller()
 export class BreadController {
     constructor(private readonly breadService:BreadService) { }
     @Get()

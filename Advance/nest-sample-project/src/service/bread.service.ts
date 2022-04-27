@@ -1,9 +1,11 @@
+import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { PagingOption } from "src/base/base.pagination";
 import { RepositoryBase } from "src/base/base.repository";
 import { Bread } from "src/entity/bread";
 import { Repository } from "typeorm";
 
+@Injectable()
 export class BreadService extends RepositoryBase<Bread> {
     constructor(
         @InjectRepository(Bread)

@@ -1,6 +1,5 @@
-import { max } from "rxjs";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { COMMENT } from "./comment";
+import { Comment } from "./comment";
 
 @Entity({name:'BREAD'})
 export class Bread {
@@ -9,7 +8,7 @@ export class Bread {
     ID: number;
     @Column({ length:300 })
     NAME: string;
-    @Column({ length:12, type:'decimal' })
+    @Column({type:'decimal' })
     PRICE: number;
     @Column({ length:1000 })
     DESCRIPTION: string;
@@ -25,8 +24,6 @@ export class Bread {
     QUANTITY: number;
     @Column()
     RATING: number;
-    @Column({nullable:true})
-    COMMENTS: COMMENT[];
     @Column()
     DATE: Date;
 }

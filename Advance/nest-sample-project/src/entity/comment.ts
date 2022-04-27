@@ -1,10 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: "COMMENT" })
-export class COMMENT {
+export class Comment {
     @Column()
     @PrimaryGeneratedColumn()
     ID: number;
+    @Column()
+    @PrimaryColumn()
+    REF_BREAD_ID: number;
     @Column({length:64})
     NAME: string;
     @Column({length:512})
