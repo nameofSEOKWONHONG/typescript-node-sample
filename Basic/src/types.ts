@@ -4,7 +4,9 @@ const TYPES = {
     Logger: Symbol.for("ILogger"),
     DatabaseLogger: Symbol.for("DatabaseLogger"),
     UserRepository: Symbol.for("UserRepository"),
-    LoginService: Symbol.for("ILoginService")
+    LoginService: Symbol.for("ILoginService"),
+    GetFileService: Symbol.for("GetFileService"),
+    ServiceSample: Symbol.for("ServiceSample")
 };
 
 export { TYPES };

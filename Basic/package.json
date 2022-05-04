@@ -17,5 +17,8 @@
     "mysql2": "^2.3.3",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.31"
   }
 }
