@@ -1,5 +1,4 @@
 import { IServiceBase } from "./base.iservice"
-import { ServiceBase } from "./base.service";
 
 export class ServiceCore {
     constructor(

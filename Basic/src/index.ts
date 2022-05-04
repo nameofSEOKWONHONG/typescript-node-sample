@@ -1,12 +1,14 @@
 import { List } from "linqts"
 import { ServiceCore } from "./base/base.servicecore"
 import { GetFileServiceRequestDto } from "./dto/getFileServiceRequestDto"
+import { WriteFileRequestDto } from "./dto/WriteFileRequestDto"
 import User from './entity/User'
 import { myContainer } from "./inversify.config"
 import { UserRepository } from './repository/UserRepository'
-import { GetFileService } from "./services/FileService"
+import { GetFileService } from "./services/GetFileService"
 import { LoginService } from "./services/LoginService"
 import { ServiceSample } from "./services/ServiceCoreSample"
+import { WriteFileService } from "./services/WriteFileService"
 import { TYPES } from "./types"
 import { ConsoleLogger } from "./utils/logger"
 
@@ -42,9 +44,11 @@ import { CoflFileUploadRepository } from "./repository/CoflFileUploadRepository"
 
     const sampleSvc = myContainer.get<ServiceSample>(TYPES.ServiceSample)
     const getfileSvc = myContainer.get<GetFileService>(TYPES.GetFileService)
+    const writefileSvc = myContainer.get<WriteFileService>(TYPES.WriteFileService)
     const filename = "d://test1.txt";
 
     const svcCoreItems = new Array<ServiceCore>();
+    svcCoreItems.push(new ServiceCore(writefileSvc, new WriteFileRequestDto(filename, "hello world on ts-node")))
     svcCoreItems.push(new ServiceCore(sampleSvc, "service pattern"))
     svcCoreItems.push(new ServiceCore(getfileSvc, new GetFileServiceRequestDto(filename)))
     for await(const svc of svcCoreItems) {
@@ -54,6 +58,8 @@ import { CoflFileUploadRepository } from "./repository/CoflFileUploadRepository"
         logger.write(svcResult);
         logger.write('==============================================================')
     }
+    svcCoreItems.splice(0, svcCoreItems.length)
+    logger.write(svcCoreItems)
     
     /*
     const datasource = myContainer.get<DataSource>(TYPES.DataSource)

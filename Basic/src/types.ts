@@ -6,7 +6,8 @@ const TYPES = {
     UserRepository: Symbol.for("UserRepository"),
     LoginService: Symbol.for("ILoginService"),
     GetFileService: Symbol.for("GetFileService"),
-    ServiceSample: Symbol.for("ServiceSample")
+    ServiceSample: Symbol.for("ServiceSample"),    
+    WriteFileService:Symbol.for("WriteFileService")
 };
 
 export { TYPES };

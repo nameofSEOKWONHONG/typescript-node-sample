@@ -7,11 +7,12 @@ import { IUserRepository, UserRepository } from "./repository/UserRepository";
 import { LoginService, ILoginService } from "./services/LoginService";
 import { TYPES } from "./types";
 import { ConsoleLogger, ILogger } from "./utils/logger";
-import { GetFileService, IGetFileService } from "./services/FileService";
+import { GetFileService, IGetFileService } from "./services/GetFileService";
 import { IServiceSample, ServiceSample } from "./services/ServiceCoreSample";
-import { ServiceCore } from "./base/base.servicecore";
+import { IWriteFileService, WriteFileService } from "./services/WriteFileService";
 
 const myContainer = new Container();
+myContainer.bind<IWriteFileService>(TYPES.WriteFileService).to(WriteFileService).inTransientScope();
 myContainer.bind<IServiceSample>(TYPES.ServiceSample).to(ServiceSample).inTransientScope()
 myContainer.bind<DataSource>(TYPES.DataSource).toConstantValue(datasource)
 myContainer.bind<ICoflFileUploadRepository>(TYPES.CoflFileUploadRepository).to(CoflFileUploadRepository).inTransientScope()
