@@ -11,7 +11,7 @@ export interface IWriteFileService {
 export class WriteFileService extends ServiceBase<WriteFileRequestDto, boolean> implements IWriteFileService {
     protected async ValidateAsync(): Promise<boolean> {
         if(this.Request.filename === "") return false
-        return await fs.existsSync(this.Request.filename)
+        return true
     }
     protected async PreExecuteAsync(): Promise<void> {
         

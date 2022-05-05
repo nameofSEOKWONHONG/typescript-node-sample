@@ -1,4 +1,3 @@
-import { timeStamp } from "console";
 import { injectable } from "inversify";
 import { IServiceBase } from "./base.iservice";
 

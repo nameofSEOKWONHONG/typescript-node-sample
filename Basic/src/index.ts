@@ -11,6 +11,8 @@ import { ServiceSample } from "./services/ServiceCoreSample"
 import { WriteFileService } from "./services/WriteFileService"
 import { TYPES } from "./types"
 import { ConsoleLogger } from "./utils/logger"
+import { rangeGenerator } from "./utils/rangeGenerator"
+import logger from "./config/winston"
 
 /*
 import { DataSource } from "typeorm"
@@ -18,29 +20,30 @@ import { CoflFileUploadRepository } from "./repository/CoflFileUploadRepository"
 */
 
 (async() => {
-    const logger = myContainer.get<ConsoleLogger>(TYPES.Logger)
+    logger.info('Start')
+
     let user = new User(0, "test", 29)
-    logger.write(user)
+    logger.debug(user)
     
     let users = new List<User>()
     users.Add(new User(0, "test1", 1))
     users.Add(new User(1, "test2", 1))
     users.Add(new User(2, "test3", 1))
     
-    logger.write(users)
-    logger.write(users.Remove(users.First(u => u?.Name == 'test3')))
-    logger.write(users)
+    logger.info(users)
+    logger.info(users.Remove(users.First(u => u?.Name == 'test3')))
+    logger.info(users)
     
     const userRepository = myContainer.get<UserRepository>(TYPES.UserRepository)
     users.ForEach((v, i, list) => {
         userRepository.add(v!)
     })
     var insertedUser = userRepository.add(new User(0, "test4", 40))
-    logger.write(insertedUser)
+    logger.info(insertedUser)
     
     const loginService = myContainer.get<LoginService>(TYPES.LoginService)
     let result = loginService.isLogin("test4", 40)
-    logger.write(result)
+    logger.info(result)
 
     const sampleSvc = myContainer.get<ServiceSample>(TYPES.ServiceSample)
     const getfileSvc = myContainer.get<GetFileService>(TYPES.GetFileService)
@@ -52,14 +55,18 @@ import { CoflFileUploadRepository } from "./repository/CoflFileUploadRepository"
     svcCoreItems.push(new ServiceCore(sampleSvc, "service pattern"))
     svcCoreItems.push(new ServiceCore(getfileSvc, new GetFileServiceRequestDto(filename)))
     for await(const svc of svcCoreItems) {
-        logger.write('==============================================================')
-        logger.write(svc)
+        logger.info('==============================================================')
+        logger.info(svc)
         const svcResult = await svc.ExecuteCoreAsync()
-        logger.write(svcResult);
-        logger.write('==============================================================')
+        logger.info(svcResult);
+        logger.info('==============================================================')
     }
     svcCoreItems.splice(0, svcCoreItems.length)
-    logger.write(svcCoreItems)
+    logger.info(svcCoreItems)
+
+    for(const num of rangeGenerator(1, 10)) {
+        logger.info(num)
+    }
     
     /*
     const datasource = myContainer.get<DataSource>(TYPES.DataSource)
