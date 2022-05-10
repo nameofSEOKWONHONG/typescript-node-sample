@@ -3,16 +3,16 @@ import { ServiceCore } from "./base/base.servicecore"
 import { GetFileServiceRequestDto } from "./dto/getFileServiceRequestDto"
 import { WriteFileRequestDto } from "./dto/WriteFileRequestDto"
 import User from './entity/User'
-import { myContainer } from "./inversify.config"
+import { Container } from "./inversify.config"
 import { UserRepository } from './repository/UserRepository'
 import { GetFileService } from "./services/GetFileService"
 import { LoginService } from "./services/LoginService"
 import { ServiceSample } from "./services/ServiceCoreSample"
 import { WriteFileService } from "./services/WriteFileService"
-import { TYPES } from "./types"
 import { ConsoleLogger } from "./utils/logger"
 import { rangeGenerator } from "./utils/rangeGenerator"
 import logger from "./config/winston"
+import { TYPES } from "./types"
 
 /*
 import { DataSource } from "typeorm"
@@ -34,20 +34,20 @@ import { CoflFileUploadRepository } from "./repository/CoflFileUploadRepository"
     logger.info(users.Remove(users.First(u => u?.Name == 'test3')))
     logger.info(users)
     
-    const userRepository = myContainer.get<UserRepository>(TYPES.UserRepository)
+    const userRepository = Container.get<UserRepository>(TYPES.UserRepository)
     users.ForEach((v, i, list) => {
         userRepository.add(v!)
     })
     var insertedUser = userRepository.add(new User(0, "test4", 40))
     logger.info(insertedUser)
     
-    const loginService = myContainer.get<LoginService>(TYPES.LoginService)
+    const loginService = Container.get<LoginService>(TYPES.LoginService)
     let result = loginService.isLogin("test4", 40)
     logger.info(result)
 
-    const sampleSvc = myContainer.get<ServiceSample>(TYPES.ServiceSample)
-    const getfileSvc = myContainer.get<GetFileService>(TYPES.GetFileService)
-    const writefileSvc = myContainer.get<WriteFileService>(TYPES.WriteFileService)
+    const sampleSvc = Container.get<ServiceSample>(TYPES.ServiceSample)
+    const getfileSvc = Container.get<GetFileService>(TYPES.GetFileService)
+    const writefileSvc = Container.get<WriteFileService>(TYPES.WriteFileService)
     const filename = "d://test1.txt";
 
     const svcCoreItems = new Array<ServiceCore>();
